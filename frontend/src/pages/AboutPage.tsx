@@ -36,7 +36,7 @@ export default function AboutPage() {
             <section
                 style={{
                     maxWidth: "800px",
-                    margin: "60px auto",
+                    margin: "10% auto",
                     padding: "0 24px",
                     textAlign: "center",
                 }}
