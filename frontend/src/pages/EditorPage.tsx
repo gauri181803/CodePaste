@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import Editor from "@monaco-editor/react";
 import { Link, useParams } from "react-router-dom";
-
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 type SyncStatus = "saved" | "pending" | "offline";
 
 export default function EditorPage() {
@@ -18,7 +18,7 @@ export default function EditorPage() {
 
   /* ---------------- Load room data ---------------- */
   useEffect(() => {
-    fetch(`http://localhost:4000/api/rooms/${roomId}`)
+    fetch(`${API_BASE_URL}/api/rooms/${roomId}`)
       .then((res) => res.json())
       .then((data) => {
         setCode(data.code || "");
@@ -29,7 +29,7 @@ export default function EditorPage() {
 
   /* ---------------- Save logic ---------------- */
   const saveToServer = (value: string, lang: string) => {
-    fetch(`http://localhost:4000/api/rooms/${roomId}`, {
+    fetch(`${API_BASE_URL}/api/rooms/${roomId}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ code: value, language: lang }),
